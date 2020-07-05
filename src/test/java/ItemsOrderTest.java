@@ -22,7 +22,7 @@ public class ItemsOrderTest {
     OrderPage orderPage = new OrderPage(driver);
 
     @BeforeAll
-    static void setUp() {
+    public static void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
@@ -35,12 +35,12 @@ public class ItemsOrderTest {
     }
 
     @AfterAll
-    static void tearDown() {
+    public static void tearDown() {
         //driver.quit();
     }
 
     @Test
-    public void hello() {
+    public void itemsOrderTest() {
         mainPage.switchToWomenTab();
         orderPage.addItemToCart(womenTabItem, orderPage.getSmallSize(), orderPage.getContinueShoppingButton());
         mainPage.switchToDressesTab();
