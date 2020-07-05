@@ -1,3 +1,5 @@
+package pageObjects;
+
 import lombok.Getter;
 import org.openqa.selenium.*;
 
