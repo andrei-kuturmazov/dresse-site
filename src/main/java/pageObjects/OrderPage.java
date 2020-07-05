@@ -26,7 +26,6 @@ public class OrderPage {
     private final String womenTabOrder = "(//td/p[@class='product-name'])[1]";
     private final String dressesTabOrder = "(//td/p[@class='product-name'])[2]";
     private final String shirtsTabOrder = "(//td/p[@class='product-name'])[3]";
-
     private final String itemsOnPage = "//h5[@itemprop='name']";
 
     public OrderPage(WebDriver driver) {
@@ -38,7 +37,7 @@ public class OrderPage {
     }
 
     public List<String> getNamesForCartItems(String pageElement) {
-        List <WebElement> elements = driver.findElements(By.xpath(pageElement));
+        List<WebElement> elements = driver.findElements(By.xpath(pageElement));
         productsToBuyNames = new ArrayList<>();
         for (WebElement webElement : elements) {
             productsToBuyNames.add(webElement.getText().trim());
