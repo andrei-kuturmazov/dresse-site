@@ -1,7 +1,6 @@
 package pageObjects;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.Getter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Getter
+
 public class MainPage {
 
     public String baseUrl = "http://automationpractice.com/index.php";
@@ -66,9 +65,9 @@ public class MainPage {
         return productsToBuyNames;
     }
 
-    public void deleteRandomItemFromCart(String pageItem) {
+    public void deleteRandomItemFromCart() {
         getNamesForCartItems(cartElements);
-        List<WebElement> elements = driver.findElements(By.xpath(pageItem));
+        List<WebElement> elements = driver.findElements(By.xpath(deleteLink));
         int index = (int) (Math.random() * elements.size());
         elements.get(index).click();
     }
@@ -79,7 +78,7 @@ public class MainPage {
 
     public void addItemToCart(String item, String dressSize, String actionAfterSelection) {
         changeInteractionToList();
-        List<WebElement> itemsOnPage = driver.findElements(By.xpath(getItemsOnPage()));
+        List<WebElement> itemsOnPage = driver.findElements(By.xpath("//h5[@itemprop='name']"));
         System.out.println(itemsOnPage);
         for (WebElement element : itemsOnPage) {
             if (element.getText().trim().equalsIgnoreCase(item)) {
@@ -90,6 +89,18 @@ public class MainPage {
         driver.findElement(By.xpath(dressSize)).click();
         driver.findElement(By.xpath(addToCardButton)).click();
         driver.findElement(By.xpath(actionAfterSelection)).click();
+    }
+
+    public void addItemFromWomenTab() {
+        addItemToCart(womenTabItem, smallSize, continueShoppingButton);
+    }
+
+    public void addItemFromDressesTab() {
+        addItemToCart(dressesTabItem, largeSize, continueShoppingButton);
+    }
+
+    public void addItemFromShirtsTab() {
+        addItemToCart(shirtsTabItem, middleSize, checkoutButton);
     }
 
     public void openMainPage() {
