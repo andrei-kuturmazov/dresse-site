@@ -8,17 +8,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pageObjects.MainPage;
 import pageObjects.OrderPage;
 
-
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemsOrderTest {
 
     public static WebDriver driver;
-    public String womenTabItem = "Blouse";
-    public String dressesTabItem = "Printed Chiffon Dress";
-    public String shirtsTabItem = "Faded Short Sleeve T-shirts";
 
     MainPage mainPage = new MainPage(driver);
     OrderPage orderPage = new OrderPage(driver);
@@ -44,15 +39,11 @@ public class ItemsOrderTest {
     @Test
     public void itemsOrderTest() {
         mainPage.switchToWomenTab();
-        orderPage.addItemToCart(womenTabItem, orderPage.getSmallSize(), orderPage.getContinueShoppingButton());
+        orderPage.addItemFromWomenTab();
         mainPage.switchToDressesTab();
-        orderPage.addItemToCart(dressesTabItem, orderPage.getLargeSize(), orderPage.getContinueShoppingButton());
+        orderPage.addItemFromDressesTab();
         mainPage.switchToShirtsTab();
-        orderPage.addItemToCart(shirtsTabItem, orderPage.getMiddleSize(), orderPage.getCheckoutButton());
-        assertEquals(womenTabItem, orderPage.getOrderItemText(orderPage.getWomenTabOrder()));
-        assertEquals(dressesTabItem, orderPage.getOrderItemText(orderPage.getDressesTabOrder()));
-        assertEquals(shirtsTabItem, orderPage.getOrderItemText(orderPage.getShirtsTabOrder()));
-        orderPage.deleteRandomItemFromCart(orderPage.getDeleteLink());
+        orderPage.addItemFromShirtsTab();
+        orderPage.deleteRandomItemFromCart();
     }
-
 }

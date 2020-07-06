@@ -1,6 +1,5 @@
 package pageObjects;
 
-import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,11 +7,13 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class OrderPage {
 
     static WebDriver driver;
     List<String> productsToBuyNames;
+    public String womenTabItem = "Blouse";
+    public String dressesTabItem = "Printed Chiffon Dress";
+    public String shirtsTabItem = "Faded Short Sleeve T-shirts";
 
     private final String listButton = "//li[@id='list']//i";
     private final String largeSize = "//*[@id='group_1']/option[@value='3']";
@@ -27,6 +28,7 @@ public class OrderPage {
     private final String dressesTabOrder = "(//td/p[@class='product-name'])[2]";
     private final String shirtsTabOrder = "(//td/p[@class='product-name'])[3]";
     private final String itemsOnPage = "//h5[@itemprop='name']";
+
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;
@@ -45,9 +47,9 @@ public class OrderPage {
         return productsToBuyNames;
     }
 
-    public void deleteRandomItemFromCart(String pageItem) {
+    public void deleteRandomItemFromCart() {
         getNamesForCartItems(cartElements);
-        List<WebElement> elements = driver.findElements(By.xpath(pageItem));
+        List<WebElement> elements = driver.findElements(By.xpath(deleteLink));
         int index = (int) (Math.random() * elements.size());
         elements.get(index).click();
     }
@@ -58,7 +60,7 @@ public class OrderPage {
 
     public void addItemToCart(String item, String dressSize, String actionAfterSelection) {
         changeInteractionToList();
-        List<WebElement> itemsOnPage = driver.findElements(By.xpath(getItemsOnPage()));
+        List<WebElement> itemsOnPage = driver.findElements(By.xpath("//h5[@itemprop='name']"));
         System.out.println(itemsOnPage);
         for (WebElement element : itemsOnPage) {
             if (element.getText().trim().equalsIgnoreCase(item)) {
@@ -69,5 +71,17 @@ public class OrderPage {
         driver.findElement(By.xpath(dressSize)).click();
         driver.findElement(By.xpath(addToCardButton)).click();
         driver.findElement(By.xpath(actionAfterSelection)).click();
+    }
+
+    public void addItemFromWomenTab() {
+        addItemToCart(womenTabItem, smallSize, continueShoppingButton);
+    }
+
+    public void addItemFromDressesTab() {
+        addItemToCart(dressesTabItem, largeSize, continueShoppingButton);
+    }
+
+    public void addItemFromShirtsTab() {
+        addItemToCart(shirtsTabItem, middleSize, checkoutButton);
     }
 }

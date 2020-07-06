@@ -1,9 +1,7 @@
 package pageObjects;
 
-import lombok.Getter;
 import org.openqa.selenium.*;
 
-@Getter
 public class MainPage {
 
     public String baseUrl = "http://automationpractice.com/index.php";
