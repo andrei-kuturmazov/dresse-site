@@ -47,7 +47,6 @@ public class MainPage {
         getNamesForCartItems(cartElements);
         int index = (int) (Math.random() * deleteLink.size());
         deleteLink.get(index).click();
-        Thread.sleep(3000);
     }
 
     public String getOrderItemText(SelenideElement element) {
