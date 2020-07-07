@@ -33,26 +33,26 @@ public class MainPage {
     private SelenideElement womenTabOrder = $x("(//td/p[@class='product-name'])[1]");
     private SelenideElement dressesTabOrder = $x("(//td/p[@class='product-name'])[2]");
     private SelenideElement shirtsTabOrder = $x("(//td/p[@class='product-name'])[3]");
-    private SelenideElement itemsOnPage = $x("//h5[@itemprop='name']");
-
-
+    private ElementsCollection itemsOnPage = $$x("//h5[@itemprop='name']");
+    private ElementsCollection itemsInCart = $$x("//tbody/tr");
 
     public void changeInteractionToList() {
         listButton.click();
     }
 
-    public List<String> getNamesForCartItems(ElementsCollection pageElement) {
+    public List<String> getNamesForCartItems(ElementsCollection collection) {
         productsToBuyNames = new ArrayList<>();
-        for (SelenideElement element: pageElement) {
+        for (SelenideElement element: collection) {
             productsToBuyNames.add(element.getText().trim());
         }
         return productsToBuyNames;
     }
 
-    public void deleteRandomItemFromCart(ElementsCollection collection) {
+    public void deleteRandomItemFromCart() throws InterruptedException {
         getNamesForCartItems(cartElements);
-        int index = (int) (Math.random() * collection.size());
-        collection.get(index).click();
+        int index = (int) (Math.random() * itemsInCart.size());
+        itemsInCart.get(index).click();
+        Thread.sleep(3000);
     }
 
     public String getOrderItemText(SelenideElement element) {
@@ -73,15 +73,15 @@ public class MainPage {
     }
 
     public void addItemFromWomenTab() {
-        addItemToCart(womenTabItem, smallSize, continueShoppingButton);
+        addItemToCart(womenTabItem, smallSize, continueShoppingButton, itemsOnPage);
     }
 
     public void addItemFromDressesTab() {
-        addItemToCart(dressesTabItem, largeSize, continueShoppingButton);
+        addItemToCart(dressesTabItem, largeSize, continueShoppingButton, itemsOnPage);
     }
 
     public void addItemFromShirtsTab() {
-        addItemToCart(shirtsTabItem, middleSize, checkoutButton);
+        addItemToCart(shirtsTabItem, middleSize, checkoutButton, itemsOnPage);
     }
 
     public void openMainPage() {

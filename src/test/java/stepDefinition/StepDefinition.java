@@ -5,14 +5,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import pageObjects.MainPage;
 
 
 public class StepDefinition {
 
-    static WebDriver driver;
-    MainPage mainPage = new MainPage(driver);
+    MainPage mainPage = new MainPage();
 
     @Given("^User open a start page$")
     public void userOpenAStartPage() {
@@ -38,7 +36,7 @@ public class StepDefinition {
     }
 
     @And("^Delete one random item from cart$")
-    public void deleteOneRandomItemFromCart() {
+    public void deleteOneRandomItemFromCart() throws InterruptedException {
         mainPage.deleteRandomItemFromCart();
     }
 
