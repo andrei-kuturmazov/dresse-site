@@ -30,11 +30,7 @@ public class MainPage {
     private SelenideElement checkoutButton = $x("//div[@class='button-container']/a");
     private ElementsCollection cartElements = $$x("//td/p[@class='product-name']");
     private ElementsCollection deleteLink = $$x("//a[@class='cart_quantity_delete']");
-    private SelenideElement womenTabOrder = $x("(//td/p[@class='product-name'])[1]");
-    private SelenideElement dressesTabOrder = $x("(//td/p[@class='product-name'])[2]");
-    private SelenideElement shirtsTabOrder = $x("(//td/p[@class='product-name'])[3]");
     private ElementsCollection itemsOnPage = $$x("//h5[@itemprop='name']");
-    private ElementsCollection itemsInCart = $$x("//tbody/tr");
 
     public void changeInteractionToList() {
         listButton.click();
@@ -50,8 +46,8 @@ public class MainPage {
 
     public void deleteRandomItemFromCart() throws InterruptedException {
         getNamesForCartItems(cartElements);
-        int index = (int) (Math.random() * itemsInCart.size());
-        itemsInCart.get(index).click();
+        int index = (int) (Math.random() * deleteLink.size());
+        deleteLink.get(index).click();
         Thread.sleep(3000);
     }
 
@@ -85,7 +81,6 @@ public class MainPage {
     }
 
     public void openMainPage() {
-
         Selenide.open(baseUrl);
     }
 

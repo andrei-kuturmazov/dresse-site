@@ -15,6 +15,6 @@ public class TestInit {
 
     @AfterClass
     public static void tearDown() {
-       // Selenide.closeWebDriver();
+       Selenide.closeWebDriver();
     }
 }

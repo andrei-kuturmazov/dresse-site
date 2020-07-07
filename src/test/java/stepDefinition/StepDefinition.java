@@ -42,6 +42,5 @@ public class StepDefinition {
 
     @Then("^Items names and should be correct$")
     public void itemsNamesAndShouldBeCorrect() {
-
     }
 }

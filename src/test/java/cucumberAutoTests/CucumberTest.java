@@ -11,5 +11,5 @@ import org.junit.runner.RunWith;
         features = "src/test/java/features/",
         glue = "stepDefinition"
 )
-public class CucumberTest  extends TestInit {
+public class CucumberTest extends TestInit {
 }
