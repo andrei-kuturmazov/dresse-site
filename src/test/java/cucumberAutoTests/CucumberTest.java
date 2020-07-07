@@ -1,5 +1,6 @@
 package cucumberAutoTests;
 
+import helpers.TestInit;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -10,5 +11,5 @@ import org.junit.runner.RunWith;
         features = "src/test/java/features/",
         glue = "stepDefinition"
 )
-public class CucumberTest {
+public class CucumberTest  extends TestInit {
 }
