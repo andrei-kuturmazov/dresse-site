@@ -3,7 +3,6 @@ package pageObjects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +14,12 @@ public class MainPage {
     public String baseUrl = "http://automationpractice.com/index.php";
     List<String> productsToBuyNames;
 
-    private SelenideElement womenTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'Women')]");
-    private SelenideElement dressesTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'Dresses')]");
-    private SelenideElement tShirtsTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'T-shirts')]");
     private final String womenTabItem = "Blouse";
     private final String dressesTabItem = "Printed Chiffon Dress";
     private final String shirtsTabItem = "Faded Short Sleeve T-shirts";
+    private SelenideElement womenTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'Women')]");
+    private SelenideElement dressesTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'Dresses')]");
+    private SelenideElement tShirtsTabLink = $x("//div[@id='block_top_menu']/ul/li/a[contains(text(),'T-shirts')]");
     private SelenideElement listButton = $x("//li[@id='list']//i");
     private SelenideElement largeSize = $x("//*[@id='group_1']/option[@value='3']");
     private SelenideElement middleSize = $x("//*[@id='group_1']/option[@value='2']");
