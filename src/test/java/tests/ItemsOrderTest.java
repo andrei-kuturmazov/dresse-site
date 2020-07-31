@@ -16,9 +16,8 @@ public class ItemsOrderTest extends TestInit {
     @Test
     @DisplayName("Добавление трех вещей в корзину и удаление случайной вещи")
     public void orderTest() {
-        step("Открыть главную страницу сайта", () -> {
-            mainPage.openMainPage();
-        });
+        step("Открыть главную страницу сайта", () ->
+            mainPage.openMainPage());
         step("Перейти во вкладку \"Women\" и добавить вещь в корзину", () -> {
             mainPage.switchToWomenTab();
             mainPage.addItemFromWomenTab();
@@ -31,8 +30,7 @@ public class ItemsOrderTest extends TestInit {
             mainPage.switchToShirtsTab();
             mainPage.addItemFromShirtsTab();
         });
-        step("Удалить случайный товар из добавленных в корзину", () -> {
-            mainPage.deleteRandomItemFromCart();
-        });
+        step("Удалить случайный товар из добавленных в корзину", () ->
+            mainPage.deleteRandomItemFromCart());
     }
 }
