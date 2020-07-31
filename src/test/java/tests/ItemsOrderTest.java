@@ -4,12 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import pageObjects.MainPage;
-import utils.BaseReport;
+import utils.TestInit;
 
 import static io.qameta.allure.Allure.step;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ItemsOrderTest extends BaseReport {
+public class ItemsOrderTest extends TestInit {
 
     MainPage mainPage = new MainPage();
 
