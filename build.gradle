@@ -1,28 +1,46 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.7.0'
 }
 
-group 'org.example'
+group 'junit5-gradle-allure'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
-test {
-    useJUnitPlatform()
-}
 
-compileJava.options.encoding = 'UTF-8'
+dependencies {
+    compileOnly 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    compileOnly 'com.codeborne:selenide:5.6.0'
+    compileOnly 'io.qameta.allure:allure-selenide:2.13.0'
+
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
+    testCompile 'com.codeborne:selenide:5.6.0'
+
+    testRuntimeOnly('io.qameta.allure:allure-junit5:2.13.0')
+    testImplementation('io.qameta.allure:allure-selenide:2.13.0')
+
+    implementation('io.qameta.allure:allure-okhttp3:2.13.0')
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-dependencies {
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.2.0")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
-    testCompile("junit:junit:4.12")
-    testRuntime("org.junit.vintage:junit-vintage-engine:5.2.0")
-    compile "com.codeborne:selenide:5.12.2"
-    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.0.0'
+test {
+    useJUnitPlatform()
+    systemProperties = [
+            'file.encoding'   : 'UTF-8',
+            'selenide.browser': 'chrome',
+    ]
 }
+
+allure {
+    version = '2.10.0'
+    downloadLinkFormat = 'https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/%s/allure-commandline-%<s.zip'
+
+}
+
