@@ -43,14 +43,10 @@ public class MainPage {
         return productsToBuyNames;
     }
 
-    public void deleteRandomItemFromCart() throws InterruptedException {
+    public void deleteRandomItemFromCart() {
         getNamesForCartItems(cartElements);
         int index = (int) (Math.random() * deleteLink.size());
         deleteLink.get(index).click();
-    }
-
-    public String getOrderItemText(SelenideElement element) {
-        return element.getText();
     }
 
     public void addItemToCart(String item, SelenideElement dressSize, SelenideElement actionAfterSelection, ElementsCollection collection) {
